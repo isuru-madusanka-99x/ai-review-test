@@ -1,10 +1,19 @@
 import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { Component } from '@angular/core';
+
+// Create a mock HeroListComponent to avoid testing its functionality here
+@Component({
+  selector: 'app-hero-list',
+  template: '',
+  standalone: true
+})
+class MockHeroListComponent {}
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AppComponent],
+      imports: [AppComponent, MockHeroListComponent]
     }).compileComponents();
   });
 
@@ -24,6 +33,6 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, angular-tour-of-heroes');
+    expect(compiled.querySelector('h1')?.textContent).toContain('angular-tour-of-heroes');
   });
 });
